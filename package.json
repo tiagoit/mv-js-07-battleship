@@ -4,8 +4,11 @@
   "description": "",
   "private": true,
   "scripts": {
+    "start": "webpack-dev-server --open",
+    "watch": "webpack --watch",
+    "build": "webpack",
     "test": "jest",
-    "watch": "jest --watch"
+    "watch-test": "jest --watch"
   },
   "repository": {
     "type": "git",
