@@ -6,6 +6,13 @@
 ### Technology
 HTML, Jest, ES6, ESlint, Prettier, Stickler-ci, GitHub.
 
+### Modules
+- Game
+- GameBoard
+- Ship
+- Player
+- DOMInteraction
+
 ### Authors
 - **Andres Moya** - [@AndresFMoya](https://github.com/AndresFMoya)
 - **Tiago Ferreira** - [@ferreirati](https://github.com/ferreirati)
