@@ -10,6 +10,72 @@
 <body>
   <app></app>
 
-  
+  <p>Dare to challenge yourself against our AI algorithm?</p>
+  <p>An advice, it has been training this game for 20 years on an advanced convolutional neural network, so better give your best here.</p>
+
+  <div id="start-game">
+    <input type="text" placeholder="Player name">
+    <button>Start Game</button
+  </div>
+
+  <p>Hello <<< NAME >>>, Place your ships by chosing a length and a starting position.</p>
+  <select id="ship-length">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+
+  <div id="restart-game">
+    <button>Play again</button>
+    <div>OR</div>
+    Learn about <a href="https://www.gamedev.net/articles/programming/artificial-intelligence/the-total-beginners-guide-to-game-ai-r4942/">Beginners Guide to game AI</a>.
+  </div>
+
+  <!-- <div id="message hidden">You hit!</div> -->
+  <!-- <div id="message">Wrong shot</div> -->
+  <!-- <div id="message">Unbeliavable, you defeat our AI!</div> -->
+  <div id="message">Our AI won! That was expected...</div>
+
+  <div class="board">
+    <div class="b-row">
+      <div>
+        <div class="ship ship-left"></div>
+      </div>
+      <div>
+        <div class="ship ship-middle"></div>
+      </div>
+      <div>
+        <div class="ship ship-right">
+          <div class="shot"></div>
+        </div>
+      </div>
+      <div>
+        <div class="shot"></div>
+      </div>
+    </div>
+    <div class="b-row">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="b-row">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="b-row">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+
+
 </body>
 </html>

@@ -1,8 +1,7 @@
 class GameView {
   static html() {
     return `
-      <div id="message"></div>
-      <h1>Game Works</h1>`;
+      <h1>Battleship</h1>`;
   }
 }
 
