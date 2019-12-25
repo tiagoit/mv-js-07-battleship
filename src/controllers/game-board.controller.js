@@ -14,9 +14,9 @@ const GameBoard = () => {
   const renderBoard = () => {
     boardArray.forEach((row, rowIndex) => {
       row.forEach((cellValue, columnIndex) => {
-        document.querySelector('#board')
-          .querySelector(`.board-row:nth-child(${rowIndex + 1}`)
-          .querySelector(`.board-cell:nth-child(${columnIndex + 1}`)
+        document.querySelector('.board')
+          .querySelector(`.b-row:nth-child(${rowIndex + 1}`)
+          .querySelector(`.b-cell:nth-child(${columnIndex + 1}`)
           .innerHTML = cellValue;
       });
     });

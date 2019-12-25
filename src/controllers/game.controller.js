@@ -10,6 +10,7 @@ const GameController = () => {
     player[0] = PlayerController(document.getElementById('player1').value);
     player[1] = PlayerController('AI');
     const turn = 0;
+    player[1].board.renderBoard();
     console.log(player[1].board.boardArray);
   };
 
