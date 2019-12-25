@@ -5,7 +5,7 @@ const GameController = () => {
   const tag = 'app';
   const player = [];
   let turn = 0;
-  let opponent =1;
+  let opponent = 1;
   let status = 'pending';
 
   const start = () => {

@@ -1,4 +1,5 @@
 import ShipModel from '../models/ship.model';
+import GameBoardView from '../views/game-board.view';
 
 const GameBoard = () => {
   const boardArray = []; // [0|1|Ship]
