@@ -1,5 +1,4 @@
 import PlayerController from '../src/controllers/player.controller';
-import GameBoard from '../src/controllers/game-board.controller';
 
 describe('PlayerController', () => {
   let player1;

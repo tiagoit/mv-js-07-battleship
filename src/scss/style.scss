@@ -1,4 +1,5 @@
 @import './loading.scss';
+@import '~bootstrap';
 
 .hidden { display: none; }
 
@@ -76,5 +77,3 @@ div#message {
     background-color: rgba(0, 0, 0, 0.3);
   }
 }
-
-
