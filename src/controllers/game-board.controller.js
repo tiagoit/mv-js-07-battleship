@@ -7,17 +7,18 @@ const GameBoard = () => {
   for (let x = 0; x < 10; x += 1) {
     boardArray[x] = [];
     for (let y = 0; y < 10; y += 1) {
-      boardArray[x][y] = 0;
+      boardArray[x][y] = '0';
     }
   }
 
   const renderBoard = () => {
     boardArray.forEach((row, rowIndex) => {
       row.forEach((cellValue, columnIndex) => {
-        document.querySelector('.board')
+        document.querySelector('#board')
           .querySelector(`.b-row:nth-child(${rowIndex + 1}`)
           .querySelector(`.b-cell:nth-child(${columnIndex + 1}`)
           .innerHTML = cellValue;
+      //  TODO: Replace CellValue por Cell Status depending of the cellValue.
       });
     });
   };

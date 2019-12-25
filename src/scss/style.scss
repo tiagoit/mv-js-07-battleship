@@ -29,11 +29,12 @@ div#message {
 /**
  *    Board
  **/
-.board {
+#board {
   .b-row {
     display: flex;
     justify-content: center;
     & > div {
+      font-size:0;
       height: 60px;
       width: 60px;
       border: 2px solid rgba(0, 0, 0, 0.3);
