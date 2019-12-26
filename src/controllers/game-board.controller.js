@@ -1,10 +1,12 @@
 import ShipModel from '../models/ship.model';
 import GameBoardView from '../views/game-board.view';
+import AppService from '../app.service';
 
 const GameBoard = (pType) => {
   const boardArray = []; // [0|1|Ship]
   const ships = [];
   const playerType = pType; // [AI|Human]
+  const appService = AppService();
 
   for (let x = 0; x < 10; x += 1) {
     boardArray[x] = [];
@@ -13,13 +15,26 @@ const GameBoard = (pType) => {
     }
   }
 
-  const placeShip = (x, y, length) => {
+  const placeShip = (x, y, length, verbose = true) => {
+    if (y + length - 1 > 9) {
+      if (verbose) appService.message('Invalid ship position! Board overflow...');
+      return false;
+    }
+
+    for (let i = 0; i < length; i += 1) {
+      if (boardArray[x][y + i] !== 0) {
+        if (verbose) appService.message('Invalid ship position! Ship overlap...');
+        return false;
+      }
+    }
+
     const ship = ShipModel(x, y, length);
     ships.push(ship);
     for (let k = 0; k < length; k += 1) {
       boardArray[x][y + k] = ship;
     }
     GameBoardView.shipsPlacement(boardArray, placeShip);
+    return true;
   };
 
   const shipsPlacement = () => {

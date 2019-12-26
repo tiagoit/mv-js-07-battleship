@@ -8,7 +8,7 @@ class GameBoardView {
         const x = parseInt(ev.target.dataset.id[0], 10);
         const y = parseInt(ev.target.dataset.id[1], 10);
         const length = document.getElementById('ship-length').value;
-        callback(x, y, length);
+        callback(x, y, parseInt(length, 10));
       });
     });
   }

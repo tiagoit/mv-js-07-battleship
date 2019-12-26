@@ -3,14 +3,15 @@ import GameBoardView from './game-board.view';
 class GameView {
   static base() {
     const html = `<h1>Battleship</h1>
-      <p>Dare to challenge yourself against our AI algorithm?</p>
-      <p>An advice, it has been training this game for 20 years on an advanced convolutional neural network, so better give your best here.</p>
       <state></state>`;
     document.getElementsByTagName('app')[0].innerHTML = html;
   }
 
   static playerName(callback) {
-    const html = `<div>
+    const html = `
+      <p>Dare to challenge yourself against our AI algorithm?</p>
+      <p>An advice, it has been training this game for 20 years on an advanced convolutional neural network, so better give your best here.</p>
+      <div>
         <input type="text" id ="player1" placeholder="Player name">
         <button id="start-game">Start Game</button>
       </div>`;
@@ -21,7 +22,8 @@ class GameView {
   }
 
   static shipsPlacement(player, callback) {
-    const html = `<p>Hello ${player.getName()}, Place your ships by chosing a length and a starting position.</p>
+    const html = `<p>Hello ${player.getName()}, Place your ships by chosing a length and a starting position (board cell).</p>
+      Ship length
       <select id="ship-length" class="mb-2">
         <option value="2">2</option>
         <option value="3">3</option>

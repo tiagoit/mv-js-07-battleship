@@ -8,7 +8,9 @@ const AppService = () => {
     }, 3000);
   };
 
-  return { message };
+  const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+  return { message, rand };
 };
 
 export default AppService;

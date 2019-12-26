@@ -5,6 +5,19 @@ const PlayerController = (name) => {
 
   const getName = () => name;
 
+  const aiPlaceShips = () => {
+    let shipBlocks = 40;
+    while (shipBlocks > 1) {
+      const x = rand(0, 9);
+      const y = rand(0, 9);
+      const len = rand(2, 5);
+
+      if (board.placeShip(y, y, len, false)) {
+        shipBlocks -= len;
+      }
+    }
+  };
+
   const aiShot = (callback) => {
     console.log('ai shot');
     let x;
