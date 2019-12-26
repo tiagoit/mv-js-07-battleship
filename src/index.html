@@ -9,36 +9,14 @@
 </head>
 <body>
   <app></app>
-
-  <p>Dare to challenge yourself against our AI algorithm?</p>
-  <p>An advice, it has been training this game for 20 years on an advanced convolutional neural network, so better give your best here.</p>
-
-  <div>
-    <input type="text" id ="player1" placeholder="Player name">
-    <button id="start-game">Start Game</button>
-  </div>
-
-  <p style="display: none">Hello <<< NAME >>>, Place your ships by chosing a length and a starting position.</p>
-  <select style = "display:none" id="ship-length">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-
-  <div style="display: none" id="restart-game">
-    <button style ="display: none">Play again</button>
-    <div>OR</div>
-    Learn about <a href="https://www.gamedev.net/articles/programming/artificial-intelligence/the-total-beginners-guide-to-game-ai-r4942/">Beginners Guide to game AI</a>.
-  </div>
+  <div id="message" class="hidden"></div>
 
   <!-- <div id="message hidden">You hit!</div> -->
   <!-- <div id="message">Wrong shot</div> -->
   <!-- <div id="message">Unbeliavable, you defeat our AI!</div> -->
-  <div id="message">Welcome! Enter your name and click Start!</div>
+  <!-- <div id="message">Welcome! Enter your name and click Start!</div> -->
 
-  <div id="board" style="pointer-events:none">
+  <!-- <div id="board" style="pointer-events:none">
     <div class="b-row">
       <div class="b-cell" onClick="game.play('00')">
         <div class="ship ship-left"></div>
@@ -173,6 +151,6 @@
       <div class="b-cell" onClick="game.play('98')"></div>
       <div class="b-cell" onClick="game.play('99')"></div>
     </div>
-  </div>
+  </div> -->
 </body>
 </html>

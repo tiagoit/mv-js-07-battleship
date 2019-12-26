@@ -1,7 +1,7 @@
 import GameBoard from './game-board.controller';
 
 const PlayerController = (name) => {
-  const board = GameBoard();
+  const board = GameBoard(name === 'AI' ? 'AI' : 'Human');
 
   const getName = () => name;
 

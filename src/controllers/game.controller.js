@@ -1,47 +1,49 @@
 import GameView from '../views/game.view';
 import PlayerController from './player.controller';
+import AppService from '../app.service';
 
 const GameController = () => {
-  const tag = 'app';
   const player = [];
   let turn = 0;
-  let opponent = 1;
-  let status = 'pending';
+  let status = 'pending'; // [pending|placingShips|running]
+  const appService = AppService();
+
+  const startBattle = () => {
+    player[0].board.renderBoard();
+  };
 
   const start = () => {
-    status = 'running';
-    player[0] = PlayerController(document.getElementById('player1').value);
-    player[1] = PlayerController('AI');
-    document.getElementById('board').style.pointerEvents = 'all';
-    document.getElementById('message').innerHTML = `${player[turn].getName()} is your turn!`;
-    player[1].board.renderBoard();
-  };
-
-  const sendMessage = (msg) => {
-    document.getElementById('message').innerHTML = `<p>${msg}</p>`;
-  };
-
-  const play = move => {
-    if (status !== 'running') {
-      sendMessage('Start the game first!');
+    if (document.getElementById('player1').value === '') {
+      appService.message('What is your name?');
     } else {
-      if (turn === 0) { opponent = 1; } else { opponent = 0; }
-      player[opponent].board.boardArray[move[0]][move[1]] = 1;
-      console.log (player[opponent].board.boardArray);
-      player[opponent].board.renderBoard();
-      turn = turn === 0 ? 1 : 0;
-      sendMessage(`${player[turn].getName()} is your turn!`);
+      status = 'placingShips';
+      player[0] = PlayerController(document.getElementById('player1').value);
+      player[1] = PlayerController('AI');
+      // document.getElementById('board').style.pointerEvents = 'all';
+      appService.message(`${player[0].getName()} place your ships on the board.`);
+      GameView.shipsPlacement(player[0], startBattle);
     }
   };
 
-  const render = () => {
-    document.getElementsByTagName(tag)[0].innerHTML = GameView.html();
-    document.getElementById('start-game').addEventListener('click', event => {
-      start();
-    });
-  };
 
-  return { render, start, play };
+  // const play = move => {
+  //   if (status !== 'running') {
+  //     appService.message('Start the game first!');
+  //   } else {
+  //     const opponent = turn === 0 ? 1 : 0;
+  //     player[opponent].board.boardArray[move[0]][move[1]] = 1;
+  //     console.log (player[opponent].board.boardArray);
+  //     player[opponent].board.renderBoard();
+  //     turn = turn === 0 ? 1 : 0;
+  //     appService.message(`${player[turn].getName()} is your turn!`);
+  //   }
+  // };
+
+  GameView.base();
+  GameView.playerName(start);
+  appService.message('Welcome! Enter your name and click Start!');
+
+  return {};
 };
 
 export default GameController;

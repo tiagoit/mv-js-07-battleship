@@ -2,6 +2,8 @@
 @import '~bootstrap';
 
 .hidden { display: none; }
+.mb-2 { margin-bottom: 8px;}
+.mt-2 { margin-top: 8px;}
 
 body {
   text-align: center;
@@ -29,14 +31,13 @@ div#message {
 /**
  *    Board
  **/
-#board {
+.board {
   .b-row {
     display: flex;
     justify-content: center;
     & > div {
-      font-size:0;
-      height: 60px;
-      width: 60px;
+      height: 40px;
+      width: 40px;
       border: 2px solid rgba(0, 0, 0, 0.3);
       cursor: pointer;
       &:hover {
@@ -46,10 +47,10 @@ div#message {
   }
 
   .ship {
-    height: 44px;
-    width: 48px;
+    height: 24px;
+    width: 28px;
     background-color: rgba(0, 0, 0, 0.3);
-    margin-top: 8px;
+    margin-top: 6px;
     position: relative;
     &.ship-left { 
       float: right; 

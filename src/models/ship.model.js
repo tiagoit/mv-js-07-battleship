@@ -1,6 +1,8 @@
-const ShipModel = (x, y, length) => {
+const ShipModel = (x, y, len) => {
   const hits = [];
   const coordinates = { x, y };
+  const length = len;
+
   for (let i = 0; i < length; i += 1) hits[i] = 0;
 
   const hit = i => {
@@ -9,7 +11,7 @@ const ShipModel = (x, y, length) => {
 
   const isSunk = () => hits.every(h => h === 1);
 
-  return { hit, isSunk, coordinates };
+  return { hit, isSunk, coordinates, length };
 };
 
 export default ShipModel;
