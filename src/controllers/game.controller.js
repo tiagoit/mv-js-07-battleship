@@ -3,13 +3,30 @@ import PlayerController from './player.controller';
 import AppService from '../app.service';
 
 const GameController = () => {
-  const player = [];
+  const players = [];
   let turn = 0;
   let status = 'pending'; // [pending|placingShips|running]
   const appService = AppService();
 
+  const shot = coords => {
+    if (turn === 0) {
+      if (players[1].board.receiveAttack(coords.x, coords.y)) {
+        turn = 0;
+        // AI shot
+        const shotCoord = players[0].aiShot(shot);
+        players[0].board.receiveAttack(shotCoord.x, shotCoord.y);
+        turn = 0;
+      } else {
+        appService.message('You cannot shot the same place twice. Try again!');
+      }
+    }
+  };
+
   const startBattle = () => {
-    player[0].board.renderBoard();
+    GameView.battle(shot);
+    players[0].board.renderForBattle(shot);
+    players[1].board.renderForBattle(shot);
+    appService.message(`${players[0].getName()} is your turn!`);
   };
 
   const start = () => {
@@ -17,33 +34,18 @@ const GameController = () => {
       appService.message('What is your name?');
     } else {
       status = 'placingShips';
-      player[0] = PlayerController(document.getElementById('player1').value);
-      player[1] = PlayerController('AI');
-      // document.getElementById('board').style.pointerEvents = 'all';
-      appService.message(`${player[0].getName()} place your ships on the board.`);
-      GameView.shipsPlacement(player[0], startBattle);
+      players[0] = PlayerController(document.getElementById('player1').value);
+      players[1] = PlayerController('AI');
+      appService.message(`${players[0].getName()} place your ships on the board.`);
+      GameView.shipsPlacement(players[0], startBattle);
     }
   };
-
-
-  // const play = move => {
-  //   if (status !== 'running') {
-  //     appService.message('Start the game first!');
-  //   } else {
-  //     const opponent = turn === 0 ? 1 : 0;
-  //     player[opponent].board.boardArray[move[0]][move[1]] = 1;
-  //     console.log (player[opponent].board.boardArray);
-  //     player[opponent].board.renderBoard();
-  //     turn = turn === 0 ? 1 : 0;
-  //     appService.message(`${player[turn].getName()} is your turn!`);
-  //   }
-  // };
 
   GameView.base();
   GameView.playerName(start);
   appService.message('Welcome! Enter your name and click Start!');
 
-  return {};
+  return { shot };
 };
 
 export default GameController;

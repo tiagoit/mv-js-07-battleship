@@ -9,6 +9,7 @@ body {
   text-align: center;
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
+  margin: 12px 36px;
 }
 
 /**
@@ -16,16 +17,16 @@ body {
  **/
 div#message {
   width: 80%;
-  height: 36px;
+  height: 32px;
   position: fixed;
   margin: auto;
-  bottom: 4px;
+  bottom: 24px;
   left: 10%;
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   font-weight: bold;
-  line-height: 36px;
+  line-height: 32px;
 }
 
 /**
@@ -70,12 +71,17 @@ div#message {
   }
 
   .shot {
-    height: 24px;
-    width: 24px;
+    height: 16px;
+    width: 16px;
     position: absolute;
-    margin-top: 16px;
-    margin-left: 16px;
+    margin-top: 12px;
+    margin-left: 12px;
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.3);
   }
+}
+
+.battle-boards {
+  display: flex;
+  justify-content: space-around;
 }

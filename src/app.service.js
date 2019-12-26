@@ -5,7 +5,7 @@ const AppService = () => {
 
     setTimeout(() => {
       document.getElementById('message').classList.add('hidden');
-    }, 5000);
+    }, 3000);
   };
 
   return { message };

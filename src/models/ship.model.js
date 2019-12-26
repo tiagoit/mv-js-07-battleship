@@ -11,7 +11,9 @@ const ShipModel = (x, y, len) => {
 
   const isSunk = () => hits.every(h => h === 1);
 
-  return { hit, isSunk, coordinates, length };
+  return {
+    hit, hits, isSunk, coordinates, length,
+  };
 };
 
 export default ShipModel;

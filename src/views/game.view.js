@@ -37,11 +37,11 @@ class GameView {
     player.board.shipsPlacement();
   }
 
-  // static battle() {
-  // const html= `<human-board></human-board>
-  // <ai-board></ai-board>`;
-  // document.getElementsByTagName('state')[0].innerHTML = html;
-  // }
+  static battle() {
+    const html = `<div class="battle-boards"><human-board></human-board>
+      <ai-board></ai-board></div>`;
+    document.getElementsByTagName('state')[0].innerHTML = html;
+  }
 
 
   static playAgain(callback) {
