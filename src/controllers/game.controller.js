@@ -23,6 +23,7 @@ const GameController = () => {
   };
 
   const startBattle = () => {
+    players[1].aiPlaceShips();
     GameView.battle(shot);
     players[0].board.renderForBattle(shot);
     players[1].board.renderForBattle(shot);

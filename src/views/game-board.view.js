@@ -20,8 +20,14 @@ class GameBoardView {
       boardEl.innerHTML = boardHtml;
       boardEl.querySelectorAll('.b-row > div').forEach((el) => {
         el.addEventListener('click', (ev) => {
-          const x = parseInt(ev.target.dataset.id[0], 10);
-          const y = parseInt(ev.target.dataset.id[1], 10);
+          let dataset;
+          if (ev.target.dataset.id) {
+            dataset = ev.target.dataset;
+          } else {
+            dataset = ev.target.parentElement.dataset;
+          }
+          const x = parseInt(dataset.id[0], 10);
+          const y = parseInt(dataset.id[1], 10);
           callback({ x, y });
           this.battle(boardArray, playerType, callback);
         });

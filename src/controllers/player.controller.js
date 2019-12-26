@@ -1,18 +1,19 @@
 import GameBoard from './game-board.controller';
+import AppService from '../app.service';
 
 const PlayerController = (name) => {
   const board = GameBoard(name === 'AI' ? 'AI' : 'Human');
-
+  const appService = AppService();
   const getName = () => name;
 
   const aiPlaceShips = () => {
     let shipBlocks = 40;
     while (shipBlocks > 1) {
-      const x = rand(0, 9);
-      const y = rand(0, 9);
-      const len = rand(2, 5);
+      const x = appService.rand(0, 9);
+      const y = appService.rand(0, 9);
+      const len = appService.rand(2, 5);
 
-      if (board.placeShip(y, y, len, false)) {
+      if (board.placeShip(x, y, len, false)) {
         shipBlocks -= len;
       }
     }
@@ -30,7 +31,7 @@ const PlayerController = (name) => {
         validShot = true;
       } else if (board.boardArray[x][y] !== 1) {
         const ship = board.boardArray[x][y];
-        if (!ship.hits[y - ship.coords.y] === 0) {
+        if (!ship.hits[y - ship.coordinates.y] === 0) {
           validShot = true;
         }
       }
@@ -38,7 +39,7 @@ const PlayerController = (name) => {
     return { x, y };
   };
 
-  return { getName, board, aiShot };
+  return { getName, board, aiPlaceShips, aiShot };
 };
 
 export default PlayerController;
