@@ -79,6 +79,16 @@ div#message {
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.3);
   }
+
+  .hit-shot {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 0, 0, 0.6);
+  }
 }
 
 .battle-boards {

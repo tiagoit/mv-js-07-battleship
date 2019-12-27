@@ -42,17 +42,8 @@ class GameBoardView {
         html += `<div data-id="${i}${j}">`;
         if (boardArray[i][j] === 1) {
           html += '<div class="shot"></div>';
-        } else if (boardArray[i][j] !== 0) {
-          const ship = boardArray[i][j];
-          let sclass;
-          if (ship.coordinates.y === j) sclass = 'ship-left';
-          else if (j === ship.coordinates.y + parseInt(ship.length, 10) - 1) sclass = 'ship-right';
-          else sclass = 'ship-middle';
-          html += `<div class="ship ${sclass}">`;
-          if (ship.hits[ship.coordinates.y + j] === 1) {
-            html += '<div class="shot"></div>';
-          }
-          html += '</div>';
+        } else if (boardArray[i][j] === 2) {
+          html += '<div class="hit-shot"></div>';
         }
         html += '</div>';
       }

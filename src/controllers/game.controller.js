@@ -8,6 +8,8 @@ const GameController = () => {
   const appService = AppService();
 
   const shot = coords => {
+    console.log(players[0].board.boardArray);
+  
     if (players[1].board.receiveAttack(coords.x, coords.y)) {
       // AI shot
       const shotCoord = players[0].aiShot(shot);

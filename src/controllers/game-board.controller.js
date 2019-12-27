@@ -30,9 +30,10 @@ const GameBoard = (pType) => {
 
     const ship = ShipModel(x, y, length);
     ships.push(ship);
-    for (let k = 0; k < length; k += 1) {
-      boardArray[x][y + k] = ship;
-    }
+
+    // for (let k = 0; k < length; k += 1) {
+    //   boardArray[x][y + k] = ship;
+    // }
     GameBoardView.shipsPlacement(boardArray, placeShip);
     return true;
   };
@@ -45,16 +46,25 @@ const GameBoard = (pType) => {
     GameBoardView.battle(boardArray, playerType, callback);
   };
 
+  const shipHitted = (x, y) => {
+    ships.forEach(el => {
+      if (el.shipCoordinates.includes(String(x) + String(y))) {
+        console.log("It's a hit")
+        return true;
+      }
+      return false;
+    });
+  };
 
   const receiveAttack = (x, y) => {
-    if (boardArray[x][y] === 0) {
-      boardArray[x][y] = 1;
-      return true;
-    }
-    if (boardArray[x][y] !== 1) { // Ship
+    if (shipHitted(x, y)) { // Ship
+      boardArray[x][y] = 2;
       const ship = boardArray[x][y];
       const initialColumn = boardArray[x][y].coordinates.y;
       ship.hit(y - initialColumn);
+      return true;
+    } if (boardArray[x][y] === 0) {
+      boardArray[x][y] = 2;
       return true;
     }
     return false;
@@ -63,7 +73,7 @@ const GameBoard = (pType) => {
   const allSunk = () => ships.every(s => s.isSunk());
 
   return {
-    placeShip, receiveAttack, allSunk, shipsPlacement, boardArray, renderForBattle,
+    placeShip, receiveAttack, allSunk, shipsPlacement, boardArray, renderForBattle, ships,
   };
 };
 

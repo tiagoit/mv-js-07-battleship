@@ -7,7 +7,7 @@ const PlayerController = (name) => {
   const getName = () => name;
 
   const aiPlaceShips = () => {
-    let shipBlocks = 40;
+    let shipBlocks = 20;
     while (shipBlocks > 1) {
       const x = appService.rand(0, 9);
       const y = appService.rand(0, 9);
@@ -30,7 +30,6 @@ const PlayerController = (name) => {
       if (board.boardArray[x][y] === 0) {
         validShot = true;
       } else if (board.boardArray[x][y] !== 1) {
-        console.log('hit a ship');
         const ship = board.boardArray[x][y];
         if (ship.hits[y - ship.coordinates.y] === 0) {
           validShot = true;
