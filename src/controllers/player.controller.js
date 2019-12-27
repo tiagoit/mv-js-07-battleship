@@ -25,13 +25,14 @@ const PlayerController = (name) => {
     let y;
     let validShot = false;
     do {
-      x = parseInt(Math.random(0, 1) * 10, 10);
-      y = parseInt(Math.random(0, 1) * 10, 10);
+      x = appService.rand(0, 9);
+      y = appService.rand(0, 9);
       if (board.boardArray[x][y] === 0) {
         validShot = true;
       } else if (board.boardArray[x][y] !== 1) {
+        console.log('hit a ship');
         const ship = board.boardArray[x][y];
-        if (!ship.hits[y - ship.coordinates.y] === 0) {
+        if (ship.hits[y - ship.coordinates.y] === 0) {
           validShot = true;
         }
       }

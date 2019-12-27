@@ -12,6 +12,9 @@ const GameController = () => {
       // AI shot
       const shotCoord = players[0].aiShot(shot);
       players[0].board.receiveAttack(shotCoord.x, shotCoord.y);
+
+      players[0].board.renderForBattle();
+      players[1].board.renderForBattle(shot);
     } else {
       appService.message('You cannot shot the same place twice. Try again!');
     }

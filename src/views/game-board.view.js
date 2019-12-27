@@ -24,7 +24,7 @@ class GameBoardView {
           const x = parseInt(ds.id[0], 10);
           const y = parseInt(ds.id[1], 10);
           callback({ x, y });
-          this.battle(boardArray, playerType, callback);
+          // this.battle(boardArray, playerType, callback);
         });
       });
     } else {
