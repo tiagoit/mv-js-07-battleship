@@ -7,6 +7,14 @@ const GameController = () => {
   // let status = 'pending'; // [pending|placingShips|running]
   const appService = AppService();
 
+  const isFinished = () => {
+    let finished = false;
+    if (players[0].board.allSunk() || players[1].board.allSunk()) {
+      finished = true;
+    }
+    return finished;
+  };
+
   const shot = coords => {
     if (players[1].board.receiveAttack(coords.x, coords.y)) {
       // AI shot
@@ -40,14 +48,15 @@ const GameController = () => {
     }
   };
 
-  const isFinished = () => {
-    let finished = false;
-    if (players[0].board.allSunk() || players[1].board.allSunk()) {
-      finished = true;
+  const getWinner = () => {
+    let winner;
+    if (isFinished()) {
+      if (players[0].board.allSunk()) {
+        winner = players[1];
+      } else { winner = players[0]; }
     }
-    return finished;
+    return winner;
   };
-
 
   GameView.base();
   GameView.playerName(start);
