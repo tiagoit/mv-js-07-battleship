@@ -20,14 +20,9 @@ class GameBoardView {
       boardEl.innerHTML = boardHtml;
       boardEl.querySelectorAll('.b-row > div').forEach((el) => {
         el.addEventListener('click', (ev) => {
-          let dataset;
-          if (ev.target.dataset.id) {
-            dataset = ev.target.dataset;
-          } else {
-            dataset = ev.target.parentElement.dataset;
-          }
-          const x = parseInt(dataset.id[0], 10);
-          const y = parseInt(dataset.id[1], 10);
+          const ds = ev.target.dataset.id ? ev.target.dataset : ev.target.parentElement.dataset;
+          const x = parseInt(ds.id[0], 10);
+          const y = parseInt(ds.id[1], 10);
           callback({ x, y });
           this.battle(boardArray, playerType, callback);
         });
@@ -37,7 +32,6 @@ class GameBoardView {
       boardEl.innerHTML = boardHtml;
     }
   }
-
 
   static board(boardArray, playerType) {
     let html = playerType === 'AI' ? '<h3>Artificial Intelligence board</h3>' : '<h3>My board</h3>';
@@ -55,7 +49,7 @@ class GameBoardView {
           else if (j === ship.coordinates.y + parseInt(ship.length, 10) - 1) sclass = 'ship-right';
           else sclass = 'ship-middle';
           html += `<div class="ship ${sclass}">`;
-          if (ship.hits[ship.coordinates.y - j] === 1) {
+          if (ship.hits[ship.coordinates.y + j] === 1) {
             html += '<div class="shot"></div>';
           }
           html += '</div>';

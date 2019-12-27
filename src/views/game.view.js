@@ -40,8 +40,10 @@ class GameView {
   }
 
   static battle() {
-    const html = `<div class="battle-boards"><human-board></human-board>
-      <ai-board></ai-board></div>`;
+    const html = `<div class="battle-boards">
+      <human-board></human-board>
+      <ai-board></ai-board>
+      </div>`;
     document.getElementsByTagName('state')[0].innerHTML = html;
   }
 
