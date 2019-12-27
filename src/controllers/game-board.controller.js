@@ -47,24 +47,25 @@ const GameBoard = (pType) => {
   };
 
   const shipHitted = (x, y) => {
+    let hit = false;
     ships.forEach(el => {
       if (el.shipCoordinates.includes(String(x) + String(y))) {
-        console.log("It's a hit")
-        return true;
+        console.log("It's a hit");
+        hit = true;
       }
-      return false;
     });
+    return hit;
   };
 
   const receiveAttack = (x, y) => {
-    if (shipHitted(x, y)) { // Ship
+    if (shipHitted(x,y)) { // Ship
       boardArray[x][y] = 2;
-      const ship = boardArray[x][y];
-      const initialColumn = boardArray[x][y].coordinates.y;
-      ship.hit(y - initialColumn);
+      // const ship = boardArray[x][y];
+      // const initialColumn = boardArray[x][y].coordinates.y;
+      // ship.hit(y - initialColumn);
       return true;
     } if (boardArray[x][y] === 0) {
-      boardArray[x][y] = 2;
+      boardArray[x][y] = 1;
       return true;
     }
     return false;

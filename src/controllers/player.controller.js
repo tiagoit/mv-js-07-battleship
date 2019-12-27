@@ -20,7 +20,6 @@ const PlayerController = (name) => {
   };
 
   const aiShot = (callback) => {
-    console.log('ai shot');
     let x;
     let y;
     let validShot = false;
