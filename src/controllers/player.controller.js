@@ -28,11 +28,11 @@ const PlayerController = (name) => {
       y = appService.rand(0, 9);
       if (board.boardArray[x][y] === 0) {
         validShot = true;
-      } else if (board.boardArray[x][y] !== 1) {
-        const ship = board.boardArray[x][y];
-        if (ship.hits[y - ship.coordinates.y] === 0) {
-          validShot = true;
-        }
+      // } else if (board.boardArray[x][y] !== 1) {
+      //   const ship = board.boardArray[x][y];
+      //   if (ship.hits[y - ship.coordinates.y] === 0) {
+      //     validShot = true;
+      //   }
       }
     } while (!validShot);
     return { x, y };
