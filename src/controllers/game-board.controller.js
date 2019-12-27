@@ -50,7 +50,6 @@ const GameBoard = (pType) => {
     let hit = false;
     ships.forEach(el => {
       if (el.shipCoordinates.includes(String(x) + String(y))) {
-        console.log("It's a hit");
         hit = true;
       }
     });
@@ -58,7 +57,7 @@ const GameBoard = (pType) => {
   };
 
   const receiveAttack = (x, y) => {
-    if (shipHitted(x,y)) { // Ship
+    if ((boardArray[x][y] !== 2) && shipHitted(x, y)) { // Ship
       boardArray[x][y] = 2;
       // const ship = boardArray[x][y];
       // const initialColumn = boardArray[x][y].coordinates.y;

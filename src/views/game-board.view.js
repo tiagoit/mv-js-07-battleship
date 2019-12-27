@@ -12,8 +12,6 @@ class GameBoardView {
       });
     });
   }
-  
-  //TODO: Render ships only in the human board after shipsPlacement
 
   static battle(boardArray, playerType, callback) {
     const boardHtml = GameBoardView.board(boardArray, playerType);
