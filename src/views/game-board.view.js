@@ -44,18 +44,23 @@ class GameBoardView {
           html += '<div class="shot"></div>';
         } else if (boardArray[i][j] !== 0) {
           const ship = boardArray[i][j];
-          let sclass;
-          if (ship.initialCoord.y === j) sclass = 'ship-left';
-          else if (j === ship.initialCoord.y + parseInt(ship.length, 10) - 1) sclass = 'ship-right';
-          else sclass = 'ship-middle';
-          html += `<div class="ship ${sclass}" data-id="${i}${j}">`;
+          if (playerType !== 'AI') {
+            let sclass;
+            if (ship.initialCoord.y === j) {
+              sclass = 'ship-left';
+            } else if (j === ship.initialCoord.y + parseInt(ship.length, 10) - 1) {
+              sclass = 'ship-right';
+            } else {
+              sclass = 'ship-middle';
+            }
+            html += `<div class="ship ${sclass}" data-id="${i}${j}"></div>`;
+          }
 
           // index of this column on the ship (hits array).
           const inShipIndex = j - ship.initialCoord.y;
           if (ship.hits[inShipIndex] === 1) {
-            html += '<div class="shot"></div>';
+            html += `<div class="shot hit" data-id="${i}${j}"></div>`;
           }
-          html += '</div>';
         }
         html += '</div>';
       }

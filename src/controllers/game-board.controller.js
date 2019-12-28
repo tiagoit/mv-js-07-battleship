@@ -63,14 +63,16 @@ const GameBoard = (pType) => {
       return true;
     }
 
-    // index of this column on the ship (hits array).
-    const inShipIndex = y - cell.initialCoord.y;
+    if (typeof cell === 'object') {
+      // index of this column on the ship (hits array).
+      const inShipIndex = y - cell.initialCoord.y;
 
-    // HAVE ship | NO shot
-    if(cell.hits[inShipIndex] === 0) {
-      cell.hits[inShipIndex] = 1;
-      battle(shot); // Re-render the board
-      return true;
+      // HAVE ship | NO shot
+      if (cell.hits[inShipIndex] === 0) {
+        cell.hits[inShipIndex] = 1;
+        battle(shot); // Re-render the board
+        return true;
+      }
     }
 
     // NO ship | HAVE shot (cell === 1)
@@ -82,7 +84,13 @@ const GameBoard = (pType) => {
   const allSunk = () => ships.every(s => s.isSunk());
 
   return {
-    boardArray, ships, shipsPlacement, placeShip, battle, receiveAttack, allSunk
+    boardArray,
+    ships,
+    shipsPlacement,
+    placeShip,
+    battle,
+    receiveAttack,
+    allSunk,
   };
 };
 

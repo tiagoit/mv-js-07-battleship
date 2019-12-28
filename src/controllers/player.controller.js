@@ -20,24 +20,26 @@ const PlayerController = (n) => {
   };
 
   const aiShot = () => {
-    let x, y;
-    let validShot = false;
+    let x;
+    let y;
+    let count = 0;
     do {
+      count += 1;
       x = appService.rand(0, 9);
       y = appService.rand(0, 9);
-      if (board.boardArray[x][y] === 0) {
-        validShot = true;
-      // } else if (board.boardArray[x][y] !== 1) {
-      //   const ship = board.boardArray[x][y];
-      //   if (ship.hits[y - ship.coordinates.y] === 0) {
-      //     validShot = true;
-      //   }
+      if (board.receiveAttack(x, y)) {
+        return true;
       }
-    } while (!validShot);
-    board.receiveAttack(x, y);
+    } while (count < 50);
+    return false;
   };
 
-  return { name, board, aiPlaceShips, aiShot };
+  return {
+    name,
+    board,
+    aiPlaceShips,
+    aiShot,
+  };
 };
 
 export default PlayerController;
