@@ -49,7 +49,10 @@ class GameBoardView {
           else if (j === ship.initialCoord.y + parseInt(ship.length, 10) - 1) sclass = 'ship-right';
           else sclass = 'ship-middle';
           html += `<div class="ship ${sclass}" data-id="${i}${j}">`;
-          if (ship.hits[ship.initialCoord.y + j] === 1) {
+
+          // index of this column on the ship (hits array).
+          const inShipIndex = j - ship.initialCoord.y;
+          if (ship.hits[inShipIndex] === 1) {
             html += '<div class="shot"></div>';
           }
           html += '</div>';

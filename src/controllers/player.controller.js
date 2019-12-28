@@ -19,9 +19,8 @@ const PlayerController = (n) => {
     }
   };
 
-  const aiShot = (callback) => {
-    let x;
-    let y;
+  const aiShot = () => {
+    let x, y;
     let validShot = false;
     do {
       x = appService.rand(0, 9);
@@ -35,7 +34,7 @@ const PlayerController = (n) => {
       //   }
       }
     } while (!validShot);
-    return { x, y };
+    board.receiveAttack(x, y);
   };
 
   return { name, board, aiPlaceShips, aiShot };

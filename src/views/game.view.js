@@ -2,7 +2,8 @@ import GameBoardView from './game-board.view';
 
 class GameView {
   static base() {
-    const html = `<h1>Battleship</h1>
+    const html = `
+      <h1>Battleship</h1>
       <state></state>`;
     document.getElementsByTagName('app')[0].innerHTML = html;
   }
@@ -22,7 +23,8 @@ class GameView {
   }
 
   static renderShipsPlacement(player, callback) {
-    const html = `<p>Hello ${player.name}, Place your ships by chosing a length and a starting position (board cell).</p>
+    const html = `
+      <p>Hello ${player.name}, Place your ships by chosing a length and a starting position (board cell).</p>
       Ship length
       <select id="ship-length" class="mb-2">
         <option value="2">2</option>
@@ -40,20 +42,22 @@ class GameView {
   }
 
   static battle() {
-    const html = `<div class="battle-boards">
-      <human-board></human-board>
-      <ai-board></ai-board>
+    const html = `
+      <div class="battle-boards">
+        <human-board></human-board>
+        <ai-board></ai-board>
       </div>`;
     document.getElementsByTagName('state')[0].innerHTML = html;
   }
 
 
   static playAgain(callback) {
-    const html = `<div id="restart-game">
-      <button id="play-again">Play again</button>
-      <div>OR</div>
-      Learn about <a href="https://www.gamedev.net/articles/programming/artificial-intelligence/the-total-beginners-guide-to-game-ai-r4942/">Beginners Guide to game AI</a>.
-    </div>`;
+    const html = `
+      <div id="restart-game">
+        <button id="play-again">Play again</button>
+        <div>OR</div>
+        Learn about <a href="https://www.gamedev.net/articles/programming/artificial-intelligence/the-total-beginners-guide-to-game-ai-r4942/">Beginners Guide to game AI</a>.
+      </div>`;
     document.getElementsByTagName('state')[0].innerHTML = html;
   }
 }

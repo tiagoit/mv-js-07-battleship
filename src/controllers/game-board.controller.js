@@ -16,6 +16,11 @@ const GameBoard = (pType) => {
     }
   }
 
+  // Render shipsPlacement state view.
+  const shipsPlacement = () => {
+    GameBoardView.renderShipsPlacement(boardArray, placeShip);
+  };
+
   const placeShip = (x, y, length, verbose = true) => {
     // Validations
     if (y + length - 1 > 9) {
@@ -43,46 +48,41 @@ const GameBoard = (pType) => {
     return true;
   };
 
-  // Render shipsPlacement state view.
-  const shipsPlacement = () => {
-    GameBoardView.renderShipsPlacement(boardArray, placeShip);
-  };
-
   // Render battle state view.
   const battle = (callback) => {
     GameBoardView.renderBattle(boardArray, playerType, callback);
   };
 
-  const receiveAttack = (x, y) => {
+  const receiveAttack = (x, y, shot) => {
     const cell = boardArray[x][y];
 
     // NO ship | NO shot
     if (cell === 0) {
       boardArray[x][y] = 1;
+      battle(shot); // Re-render the board
       return true;
     }
 
-    // NO ship | HAVE shot
-    if (cell === 1) return false;
-
     // index of this column on the ship (hits array).
-    const inShipIndex = y - cell.initialCoord;
-    
+    const inShipIndex = y - cell.initialCoord.y;
+
     // HAVE ship | NO shot
-    if(cell[inShipIndex] === 0) {
-      cell[inShipIndex] = 1;
-      return true
+    if(cell.hits[inShipIndex] === 0) {
+      cell.hits[inShipIndex] = 1;
+      battle(shot); // Re-render the board
+      return true;
     }
-      
-    // HAVE ship | HAVE shot
-    else return false;
+
+    // NO ship | HAVE shot (cell === 1)
+    // HAVE ship | HAVE shot cell.hits[inShipIndex] === 1
+    return false;
   };
 
   // Returns true if all the ships on the board have sunk.
   const allSunk = () => ships.every(s => s.isSunk());
 
   return {
-    boardArray, ships, shipsPlacement, battle, placeShip, receiveAttack, allSunk
+    boardArray, ships, shipsPlacement, placeShip, battle, receiveAttack, allSunk
   };
 };
 

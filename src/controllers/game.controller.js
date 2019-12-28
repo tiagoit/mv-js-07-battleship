@@ -27,14 +27,17 @@ const GameController = () => {
   };
 
   const shot = coords => {
-    if (players[1].board.receiveAttack(coords.x, coords.y)) {
-      // AI shot
-      const shotCoord = players[0].aiShot(shot);
-      players[0].board.receiveAttack(shotCoord.x, shotCoord.y);
+    // Human player shots on the AI board
+    if (players[1].board.receiveAttack(coords.x, coords.y, shot)) {
+//       players[0].board.battle(); // Re-render human player board
 
-      players[0].board.renderForBattle();
-      players[1].board.renderForBattle(shot);
-    } else {
+//       players[0].aiShot(shot); // AI shots on human player board
+//       players[1].board.battle(shot); // Re-render AI board
+      appService.message(`${players[0].name} is your turn!`);
+    }
+
+    // Player tried to shot on an invalid cell.
+    else {
       appService.message('You cannot shot the same place twice. Try again!');
     }
   };
@@ -45,6 +48,7 @@ const GameController = () => {
   // Winner is the player that don't have all ships sinked.
   const getWinner = () => (players[0].board.allSunk() ? players[1] : players[0]);
 
+  // Controller initialization
   GameView.base();
   GameView.playerName(startGame);
   appService.message('Welcome! Enter your name and click Start!');
