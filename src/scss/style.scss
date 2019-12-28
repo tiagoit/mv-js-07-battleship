@@ -32,7 +32,16 @@ div#message {
 /**
  *    Board
  **/
-.battle-boards { flex-wrap: wrap; }
+.battle-boards { 
+  flex-wrap: wrap;
+  human-board .board .b-row > div {
+    cursor: inherit;
+    &:hover {
+      background-color: inherit;
+    }
+  }
+}
+
 .board {
   .b-row {
     display: flex;

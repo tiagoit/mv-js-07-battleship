@@ -46,7 +46,8 @@ class GameView {
       <div class="battle-boards">
         <human-board></human-board>
         <ai-board></ai-board>
-      </div>`;
+      </div>
+      <play-again></play-again>`;
     document.getElementsByTagName('state')[0].innerHTML = html;
   }
 
@@ -58,7 +59,10 @@ class GameView {
         <div>OR</div>
         Learn about <a href="https://www.gamedev.net/articles/programming/artificial-intelligence/the-total-beginners-guide-to-game-ai-r4942/">Beginners Guide to game AI</a>.
       </div>`;
-    document.getElementsByTagName('state')[0].innerHTML = html;
+    document.getElementsByTagName('play-again')[0].innerHTML = html;
+    document.getElementById('play-again').addEventListener('click', event => {
+      callback();
+    });
   }
 }
 
