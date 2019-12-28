@@ -2,7 +2,7 @@ import ShipModel from '../models/ship.model';
 import GameBoardView from '../views/game-board.view';
 import AppService from '../app.service';
 
-const GameBoard = (pType) => {
+const GameBoardController = (pType) => {
   const boardArray = []; // [0|1|Ship]
   const ships = [];
   const playerType = pType; // [AI|Human]
@@ -15,11 +15,6 @@ const GameBoard = (pType) => {
       boardArray[x][y] = 0;
     }
   }
-
-  // Render shipsPlacement state view.
-  const shipsPlacement = () => {
-    GameBoardView.renderShipsPlacement(boardArray, placeShip);
-  };
 
   const placeShip = (x, y, length, verbose = true) => {
     // Validations
@@ -42,10 +37,15 @@ const GameBoard = (pType) => {
     for (let k = 0; k < length; k += 1) boardArray[x][y + k] = ship;
 
     // Re-render shipsPlacement state view.
-    shipsPlacement(boardArray, placeShip);
+    GameBoardView.renderShipsPlacement(boardArray, placeShip);
 
     // True means it was a valid placement.
     return true;
+  };
+
+  // Render shipsPlacement state view.
+  const shipsPlacement = () => {
+    GameBoardView.renderShipsPlacement(boardArray, placeShip);
   };
 
   // Render battle state view.
@@ -59,7 +59,7 @@ const GameBoard = (pType) => {
     // NO ship | NO shot
     if (cell === 0) {
       boardArray[x][y] = 1;
-      battle(shot); // Re-render the board
+      // battle(shot); // Re-render the board
       return true;
     }
 
@@ -70,7 +70,7 @@ const GameBoard = (pType) => {
       // HAVE ship | NO shot
       if (cell.hits[inShipIndex] === 0) {
         cell.hits[inShipIndex] = 1;
-        battle(shot); // Re-render the board
+        // battle(shot); // Re-render the board
         return true;
       }
     }
@@ -94,4 +94,4 @@ const GameBoard = (pType) => {
   };
 };
 
-export default GameBoard;
+export default GameBoardController;

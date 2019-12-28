@@ -1,12 +1,13 @@
-import GameBoard from './game-board.controller';
+import GameBoardController from './game-board.controller';
 import AppService from '../app.service';
 
 const PlayerController = (n) => {
-  const board = GameBoard(n === 'AI' ? 'AI' : 'Human');
+  const board = GameBoardController(n === 'AI' ? 'AI' : 'Human');
   const appService = AppService();
   const name = n;
 
   const aiPlaceShips = () => {
+    // TODO: Remove
     board.placeShip(0, 0, 3, false);
 
     // let shipBlocks = 20;

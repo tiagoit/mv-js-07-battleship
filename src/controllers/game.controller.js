@@ -28,12 +28,15 @@ const GameController = () => {
 
     // Human player shots on the AI board
     if (players[1].board.receiveAttack(coords.x, coords.y, shot)) {
+      players[1].board.battle(shot); // Re-render the board
       if (isFinished()) finishGame(true); // Human player sink all ai ships
 
       if (!players[0].aiShot()) {
         // AI give up, game finished
         if (isFinished()) finishGame(true);
       }
+
+      players[0].board.battle(shot); // Re-render the board
       if (isFinished()) finishGame(true); // AI sink all human player ships
     } else { // Player tried to shot on an invalid cell.
       appService.message('You cannot shot the same place twice. Try again!');
