@@ -4,15 +4,26 @@ import AppService from '../app.service';
 
 const GameController = () => {
   const players = [];
-  // let status = 'pending'; // [pending|placingShips|running]
   const appService = AppService();
 
-  const isFinished = () => {
-    let finished = false;
-    if (players[0].board.allSunk() || players[1].board.allSunk()) {
-      finished = true;
+  const startGame = () => {
+    if (document.getElementById('player1').value === '') {
+      appService.message('What is your name?');
+    } else {
+      // status = 'placingShips';
+      players[0] = PlayerController(document.getElementById('player1').value);
+      players[1] = PlayerController('AI');
+      appService.message(`${players[0].name} place your ships on the board.`);
+      GameView.renderShipsPlacement(players[0], startBattle);
     }
-    return finished;
+  };
+
+  const startBattle = () => {
+    players[1].aiPlaceShips();
+    GameView.battle();
+    players[0].board.battle();
+    players[1].board.battle(shot);
+    appService.message(`${players[0].name} is your turn!`);
   };
 
   const shot = coords => {
@@ -28,38 +39,14 @@ const GameController = () => {
     }
   };
 
-  const startBattle = () => {
-    players[1].aiPlaceShips();
-    GameView.battle();
-    players[0].board.renderForBattle();
-    players[1].board.renderForBattle(shot);
-    appService.message(`${players[0].getName()} is your turn!`);
-  };
+  // Game is finished if any board have all ships sinked.
+  const isFinished = () => players[0].board.allSunk() || players[1].board.allSunk();
 
-  const start = () => {
-    if (document.getElementById('player1').value === '') {
-      appService.message('What is your name?');
-    } else {
-      // status = 'placingShips';
-      players[0] = PlayerController(document.getElementById('player1').value);
-      players[1] = PlayerController('AI');
-      appService.message(`${players[0].getName()} place your ships on the board.`);
-      GameView.shipsPlacement(players[0], startBattle);
-    }
-  };
-
-  const getWinner = () => {
-    let winner;
-    if (isFinished()) {
-      if (players[0].board.allSunk()) {
-        winner = players[1];
-      } else { winner = players[0]; }
-    }
-    return winner;
-  };
+  // Winner is the player that don't have all ships sinked.
+  const getWinner = () => (players[0].board.allSunk() ? players[1] : players[0]);
 
   GameView.base();
-  GameView.playerName(start);
+  GameView.playerName(startGame);
   appService.message('Welcome! Enter your name and click Start!');
 
   return { shot };

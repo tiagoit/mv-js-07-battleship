@@ -1,5 +1,5 @@
 class GameBoardView {
-  static shipsPlacement(boardArray, callback) {
+  static renderShipsPlacement(boardArray, callback) {
     const boardHtml = GameBoardView.board(boardArray);
     const boardEl = document.getElementsByTagName('human-board')[0];
     boardEl.innerHTML = boardHtml;
@@ -13,7 +13,7 @@ class GameBoardView {
     });
   }
 
-  static battle(boardArray, playerType, callback) {
+  static renderBattle(boardArray, playerType, callback) {
     const boardHtml = GameBoardView.board(boardArray, playerType);
     if (playerType === 'AI') {
       const boardEl = document.getElementsByTagName('ai-board')[0];
@@ -42,8 +42,17 @@ class GameBoardView {
         html += `<div data-id="${i}${j}">`;
         if (boardArray[i][j] === 1) {
           html += '<div class="shot"></div>';
-        } else if (boardArray[i][j] === 2) {
-          html += '<div class="hit-shot"></div>';
+        } else if (boardArray[i][j] !== 0) {
+          const ship = boardArray[i][j];
+          let sclass;
+          if (ship.initialCoord.y === j) sclass = 'ship-left';
+          else if (j === ship.initialCoord.y + parseInt(ship.length, 10) - 1) sclass = 'ship-right';
+          else sclass = 'ship-middle';
+          html += `<div class="ship ${sclass}" data-id="${i}${j}">`;
+          if (ship.hits[ship.initialCoord.y + j] === 1) {
+            html += '<div class="shot"></div>';
+          }
+          html += '</div>';
         }
         html += '</div>';
       }

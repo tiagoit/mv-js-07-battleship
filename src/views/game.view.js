@@ -21,8 +21,8 @@ class GameView {
     });
   }
 
-  static shipsPlacement(player, callback) {
-    const html = `<p>Hello ${player.getName()}, Place your ships by chosing a length and a starting position (board cell).</p>
+  static renderShipsPlacement(player, callback) {
+    const html = `<p>Hello ${player.name}, Place your ships by chosing a length and a starting position (board cell).</p>
       Ship length
       <select id="ship-length" class="mb-2">
         <option value="2">2</option>

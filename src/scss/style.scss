@@ -33,6 +33,7 @@ div#message {
  *    Board
  **/
 .board {
+  flex-wrap: wrap;
   .b-row {
     display: flex;
     justify-content: center;

@@ -1,11 +1,11 @@
 import GameBoard from './game-board.controller';
 import AppService from '../app.service';
 
-const PlayerController = (name) => {
-  const board = GameBoard(name === 'AI' ? 'AI' : 'Human');
+const PlayerController = (n) => {
+  const board = GameBoard(n === 'AI' ? 'AI' : 'Human');
   const appService = AppService();
-  const getName = () => name;
-
+  const name = n;
+  
   const aiPlaceShips = () => {
     let shipBlocks = 20;
     while (shipBlocks > 1) {
@@ -38,7 +38,7 @@ const PlayerController = (name) => {
     return { x, y };
   };
 
-  return { getName, board, aiPlaceShips, aiShot };
+  return { name, board, aiPlaceShips, aiShot };
 };
 
 export default PlayerController;
