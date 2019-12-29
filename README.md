@@ -1,7 +1,13 @@
 # README
 
 # Project: Microverse | The Odin Project | JS | 07 | Battleship
+Vanilla JS implementation of the classic Battleship board game.
+The goal of this project is pacticing the usage of:
 
+  - ES6 Factory functions
+  - ES6 Modules
+  - Webpack
+  - TDD with Jest
 
 ### Technology
 HTML, Jest, ES6, ESlint, Prettier, Stickler-ci, GitHub.
