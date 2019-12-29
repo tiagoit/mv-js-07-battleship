@@ -1,7 +1,12 @@
 import GameBoardController from '../src/controllers/game-board.controller';
+import GameBoardView from '../src/views/game-board.view';
 
 describe('GameBoardController', () => {
   let gameBoard;
+
+  beforeAll(() => {
+    GameBoardView.renderShipsPlacement = jest.fn();
+  });
 
   beforeEach(() => {
     gameBoard = GameBoardController();
