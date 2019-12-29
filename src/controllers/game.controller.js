@@ -14,7 +14,6 @@ const GameController = () => {
 
   const finishGame = win => {
     gameInProgress = false;
-    // reveal AI ships
     if (win) { // Human player wins
       appService.message('Unbeliavable, you defeat our AI!', 7);
     } else {

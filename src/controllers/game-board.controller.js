@@ -59,7 +59,6 @@ const GameBoardController = (pType) => {
     // NO ship | NO shot
     if (cell === 0) {
       boardArray[x][y] = 1;
-      // battle(shot); // Re-render the board
       return true;
     }
 
@@ -70,7 +69,6 @@ const GameBoardController = (pType) => {
       // HAVE ship | NO shot
       if (cell.hits[inShipIndex] === 0) {
         cell.hits[inShipIndex] = 1;
-        // battle(shot); // Re-render the board
         return true;
       }
     }
